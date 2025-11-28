@@ -7,3 +7,6 @@ Integrantes:
 - Maria Larisse Alves dos Santos
 
 Embora houve a participação dos meus colegas no braço robótico, **toda a parte de programação, tanto o software desktop em Python, quando o Firmware para ESP32 foi desenvolvido por mim**, devido minha expertise e experiência.
+
+**Cobot**: Firmware para ESP32
+**CobotController** Software para controle do robô
