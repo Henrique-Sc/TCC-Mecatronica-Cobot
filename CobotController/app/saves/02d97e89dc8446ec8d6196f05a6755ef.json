@@ -1,0 +1,27 @@
+{
+  "points": {},
+  "commands": [
+    {
+      "type": "mover",
+      "params": {
+        "point": 0,
+        "mode": "Linear",
+        "speed": 50
+      }
+    },
+    {
+      "type": "garra",
+      "params": {
+        "acao": 0
+      }
+    },
+    {
+      "type": "mover",
+      "params": {
+        "point": 0,
+        "mode": "Linear",
+        "speed": 50
+      }
+    }
+  ]
+}

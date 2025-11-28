@@ -1,0 +1,15 @@
+<svg class="icons" width="64" height="64" viewBox="0 0 64 64" fill="#373434" color="#373434" stroke="#373434"
+    xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_110_35)">
+        <rect x="17" width="30" height="30" />
+        <path d="M14 30H22V36H14V30Z" />
+        <path d="M42 30H50V36H42V30Z" />
+        <rect x="8" y="64" width="34" height="6" transform="rotate(-90 8 64)" />
+        <rect x="50" y="64" width="34" height="6" transform="rotate(-90 50 64)" />
+    </g>
+    <defs>
+        <clipPath id="clip0_110_35">
+            <rect width="64" height="64" />
+        </clipPath>
+    </defs>
+</svg>

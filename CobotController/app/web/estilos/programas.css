@@ -1,0 +1,279 @@
+body {
+    /* font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            
+            color: #222; */
+}
+
+#container-slot-saves {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index:  10;
+    /* background-color: #373737; */
+}
+
+#container-slot-saves .header {
+    height: 70px;
+    border-radius: 0;
+    font-size: 20px;
+    /* justify-content: space-between; */
+    padding: 0 10px 0 10px;
+    color: white;
+    position: relative;
+}
+#container-slot-saves .header .close {
+    position: absolute;
+    height: 40px;
+    fill: white;
+    cursor: pointer;
+    right: 20px;
+}
+
+#container-slot-saves .content {
+    background-color: white;
+    height: calc(100% - 70px);
+    /* width: 100%; */
+    border: 3px #5e5e5e solid;
+    /* border-bottom: none; */
+    border-radius: 10px 10px 0 0;
+}
+
+#container-slot-saves .wrap-slot {
+    width: 500px;
+    height: 350px;
+    /* background-color: gray; */
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 4px 4px 2px gray;
+    flex-direction: column;
+}
+
+#container-slot-saves .wrap-slot .slot {
+    /* width: 100%; */
+    
+}
+
+#container-slot-saves .wrap-add-save {
+    text-align: center;
+}
+
+/* #container-slot-saves table {
+    width: auto;
+    border-radius: 10px;
+}
+#container-slot-saves table .emphasis {
+    color: #1a73e8;
+}
+#container-slot-saves table th {
+    background: none;
+}
+#container-slot-saves table th:first-child {
+    width: 70px;
+    text-align: center;
+}
+#container-slot-saves table th:nth-child(2) {
+    width: 300px;
+}
+#container-slot-saves table th:last-child {
+    width: 300px;
+    text-align: center;
+}
+#container-slot-saves table td:last-child {
+    display: flex;
+    justify-content: center;
+} */
+
+.container-slots {
+    padding: 40px;
+    width: 650px;
+    max-height: 470px;
+    margin: 0 auto;
+    margin: 50px auto 0 auto;
+    /* background-color: var(--header-background); */
+    box-shadow: 0px 2px 4px 1px #d3d3d3;
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+.container {
+    /* max-width: 600px; */
+    overflow-y: auto;
+    height: 250px;
+
+    transition: mask-image 0.2s ease;
+
+    mask-image: linear-gradient(
+    to bottom,
+    black,
+    black 20px,
+    black calc(100% - 20px),
+    transparent
+  );
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+
+  /* Em navegadores WebKit */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black,
+    black 20px,
+    black calc(100% - 20px),
+    transparent
+  );
+}
+
+.slot {
+    background: white;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.slot-name {
+    font-size: 17px;
+    /* font-weight: 500; */
+    font-family: "consolas";
+}
+
+.slot-buttons button {
+    margin-left: 8px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-add {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #0078ff;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.slot-buttons .btn-edit {
+    background: #eee;
+}
+
+.slot-buttons .btn-load {
+    background: #c8eaff;
+}
+
+.slot-buttons .btn-delete {
+    background: #ffdddd;
+}
+
+/* Modal */
+.modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+}
+
+.modal {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal h2 {
+    margin-top: 0;
+    font-weight: 500;
+}
+
+.modal input {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    margin-top: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-buttons button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.btn-cancel {
+    background: #eee;
+}
+
+.btn-confirm {
+    background: #0078ff;
+    color: white;
+}
+
+.slot-vazio {
+    text-align: center;
+    font-style: italic;
+    margin: 10px 0 40px 0;
+    color: 636363;
+}
+
+.inverted-color-buttons .modal-buttons {
+    flex-direction: row-reverse;
+    justify-content: unset;
+    position: relative;
+}
+.inverted-color-buttons .btn-cancel {
+    background-color: #0078ff ;
+    color: white;
+}
+.inverted-color-buttons .btn-confirm {
+    background-color: #eee ;
+    color: black;
+}
+.inverted-color-buttons .btn-confirm.troll {
+    animation: button-troll 0.4s forwards;
+}
+
+@keyframes button-troll {
+    from {
+        /* position:absolute; */
+        transform: translateX(0);
+        background-color: #eee ;
+        color: black;
+    }
+    
+    to {
+        transform: translateX(-134px);
+        background-color: red;
+        color: white;
+    }   
+}

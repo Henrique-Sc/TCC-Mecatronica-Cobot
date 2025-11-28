@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="estilos/basic.css">
+    <link rel="stylesheet" href="estilos/programas.css">
+    <link rel="stylesheet" href="estilos/estilo.css">
+</head>
+
+<body>
+    <header class="fbox center-v">
+        <ul class="nav fbox center-v ">
+            <li class=" cursor-pointer fbox center-vh" id="open-slot-saves">
+                Programas
+            </li>
+            <li class=" cursor-pointer fbox center-vh" id="salvar-programa">
+                Salvar
+            </li>
+        </ul>
+
+        <!-- Select de portas abaixo do ul.nav -->
+        <div class="serial-select-container cursor-pointer">
+            <div class="serial-select-selected cursor-pointer">Clique para selecionar porta...</div>
+            <div class="serial-select-options oculto">
+                <div>porta 1</div>
+                <div>porta 2</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="grid-header">
+            <div class="nome-programa">
+                <span id="nome-programa">Nome do programa</span>
+            </div>
+            <div class="modo-operacao fbox center-vh">
+                <svg width="126" height="31" viewBox="0 0 126 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0_81_9" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="126"
+                        height="31">
+                        <rect width="126" height="31" fill="#D9D9D9" />
+                    </mask>
+                    <g mask="url(#mask0_81_9)">
+                        <path
+                            d="M111.424 -34C127.714 -34 137.171 -15.5682 127.671 -2.33575L109.722 22.6642C105.965 27.8971 99.9171 31 93.4752 31H32.871C26.5005 31 20.5111 27.9651 16.7435 22.8281L-1.59176 -2.17192C-11.2804 -15.3823 -1.84672 -34 14.5357 -34H111.424Z"
+                            fill="#D9D9D9" />
+                    </g>
+                </svg>
+                <span id="modo-operacao" class="fbox center-vh">
+                    <!-- Modo de reprodução -->
+                    Modo de edição
+                </span>
+            </div>
+
+            <div class="status-robo">
+                Status: <span id="status-conexao">desconectado</span>
+            </div>
+
+            <div class="operar-robo">
+                <div class="wrap-operar-robo fbox center-vh">
+                    <svg class="icon-operar-robo" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <path
+                            d="M352 96C352 78.3 337.7 64 320 64C302.3 64 288 78.3 288 96L288 304C288 312.8 280.8 320 272 320C263.2 320 256 312.8 256 304L256 128C256 110.3 241.7 96 224 96C206.3 96 192 110.3 192 128L192 400C192 401.5 192 403.1 192.1 404.6L131.6 347C115.6 331.8 90.3 332.4 75 348.4C59.7 364.4 60.4 389.7 76.4 405L188.8 512C231.9 553.1 289.2 576 348.8 576L368 576C465.2 576 544 497.2 544 400L544 192C544 174.3 529.7 160 512 160C494.3 160 480 174.3 480 192L480 304C480 312.8 472.8 320 464 320C455.2 320 448 312.8 448 304L448 128C448 110.3 433.7 96 416 96C398.3 96 384 110.3 384 128L384 304C384 312.8 376.8 320 368 320C359.2 320 352 312.8 352 304L352 96z" />
+                    </svg>
+                    Operar<br>Robô
+                </div>
+            </div>
+
+            <div class="controle-execucao fbox center-vh">
+                <div id="cmd-play" class="media-control play fbox center-vh">
+                    <div class="wrap-svg">
+                        <svg class="icons" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                            <path
+                                d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z" />
+                        </svg>
+                    </div>
+                    <!-- <img src="" alt="Icon play"> -->
+                </div>
+                <div id="cmd-pause" class="media-control pause fbox center-vh">
+                    <div class="wrap-svg">
+                        <svg class="icons" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                            <path
+                                d="M160 96L480 96C515.3 96 544 124.7 544 160L544 480C544 515.3 515.3 544 480 544L160 544C124.7 544 96 515.3 96 480L96 160C96 124.7 124.7 96 160 96z" />
+                        </svg>
+                    </div>
+                    <!-- <img src="" alt="Icon pause"> -->
+                </div>
+                <div id="cmd-backward" class="media-control backward fbox center-vh">
+                    <div class="wrap-svg">
+                        <svg class="icons" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                            <path
+                                d="M556.2 541.6C544.2 546.6 530.5 543.8 521.3 534.7L352 365.3L352 512C352 524.9 344.2 536.6 332.2 541.6C320.2 546.6 306.5 543.8 297.3 534.7L128 365.3L128 512C128 529.7 113.7 544 96 544C78.3 544 64 529.7 64 512L64 128C64 110.3 78.3 96 96 96C113.7 96 128 110.3 128 128L128 274.7L297.4 105.4C306.6 96.2 320.3 93.5 332.3 98.5C344.3 103.5 352 115.1 352 128L352 274.7L521.4 105.3C530.6 96.1 544.3 93.4 556.3 98.4C568.3 103.4 576 115.1 576 128L576 512C576 524.9 568.2 536.6 556.2 541.6z" />
+                        </svg>
+                    </div>
+                    <!-- <img src="" alt="Icon backward"> -->
+                </div>
+                <div id="cmd-forward" class="media-control forward fbox center-vh">
+                    <div class="wrap-svg">
+                        <svg class="icons" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                            <path
+                                d="M149 100.8C161.9 93.8 177.7 94.5 190 102.6L448 272.1L448 128C448 110.3 462.3 96 480 96C497.7 96 512 110.3 512 128L512 512C512 529.7 497.7 544 480 544C462.3 544 448 529.7 448 512L448 367.9L190 537.5C177.7 545.6 162 546.3 149 539.3C136 532.3 128 518.7 128 504L128 136C128 121.3 136.1 107.8 149 100.8z" />
+                        </svg>
+                    </div>
+                    <!-- <img src="" alt="Icon forward"> -->
+                </div>
+            </div>
+
+            <div class="parametros fbox center-v">
+                <span id="slider-speed-span">50%</span>
+                <input type="range" id="slider-speed" min="10" max="100"></input>
+                <span>Velocidade</span>
+            </div>
+        </div>
+
+        <div class="container-programa">
+            <div class="linha-programa fbox wrap-comandos">
+                <div id="inicio-programa" class="wrap-comando fbox center-v not-include">
+                    <div class="comandos fbox center-vh pointer">
+                        <div class="wrap-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                <path
+                                    d="M128 64C145.7 64 160 78.3 160 96L160 112L229 94.8C267.1 85.3 307.3 89.7 342.5 107.3C388.8 130.5 443.3 130.5 489.6 107.3L499.2 102.5C519.8 92.1 544 107.1 544 130.1L544 409.8C544 423.1 535.7 435.1 523.2 439.8L488.5 452.8C442.3 470.1 390.9 467.4 346.8 445.4C308.9 426.4 265.4 421.7 224.3 432L160 448L160 544C160 561.7 145.7 576 128 576C110.3 576 96 561.7 96 544L96 96C96 78.3 110.3 64 128 64zM160 251.1L224 237.2L224 302.7L160 316.6L160 382.1L208.8 369.9C213.9 368.6 218.9 367.5 224 366.6L224 302.7L262.9 294.3C271.2 292.5 279.6 291.8 288 292.2L288 228.2C301.6 228.6 315.2 230.8 328.4 234.6L352 241.5L352 308.2L310.3 295.9C303 293.8 295.5 292.5 288 292.1L288 363.5C309.8 365.4 331.3 370.2 352 377.9L352 308.1L374.7 314.8C388.2 318.8 402 321.2 416 322.2L416 258C408.2 257.2 400.4 255.7 392.8 253.5L352 241.5L352 179.5C339 175.7 326.2 170.7 313.8 164.5C305.6 160.4 296.9 157.5 288 155.7L288 228.1C275 227.7 262 228.9 249.3 231.7L224 237.2L224 162L160 178L160 251.1zM416 399.7C432.8 401.2 449.9 399 466 392.9L480 387.7L480 316L472.1 317.8C453.7 322.1 434.8 323.5 416 322.3L416 399.7zM480 250.3L480 179.5C459.1 185.6 437.6 188.6 416 188.6L416 258C429.9 259.4 444 258.5 457.7 255.4L480 250.2z" />
+                            </svg>
+                        </div>
+                        <div class="cmd-text">
+                            <span>Início</span>
+                        </div>
+                    </div>
+                    <div class="arrow fbox center-v">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                            <path
+                                d="M439.1 297.4C451.6 309.9 451.6 330.2 439.1 342.7L279.1 502.7C266.6 515.2 246.3 515.2 233.8 502.7C221.3 490.2 221.3 469.9 233.8 457.4L371.2 320L233.9 182.6C221.4 170.1 221.4 149.8 233.9 137.3C246.4 124.8 266.7 124.8 279.2 137.3L439.2 297.3z" />
+                        </svg>
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.<path d="M598.6 297.4C611.1 309.9 611.1 330.2 598.6 342.7L470.6 470.7C461.4 479.9 447.7 482.6 435.7 477.6C423.7 472.6 416 460.9 416 448L416 384L80 384C53.5 384 32 362.5 32 336L32 304C32 277.5 53.5 256 80 256L416 256L416 192C416 179.1 423.8 167.4 435.8 162.4C447.8 157.4 461.5 160.2 470.7 169.3L598.7 297.3z"/></svg> -->
+                    </div>
+                </div>
+
+                <div id="fim-programa" class="wrap-comando fbox center-v not-include">
+                    <div class="comandos fbox center-vh">
+                        <div class="wrap-svg">
+                            <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">!Font
+                                Awesome Free v7.0.0 by
+                                @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free
+                                Copyright 2025 Fonticons, Inc.
+                                <path
+                                    d="M128 64C145.7 64 160 78.3 160 96L160 112L229 94.8C267.1 85.3 307.3 89.7 342.5 107.3C388.8 130.5 443.3 130.5 489.6 107.3L499.2 102.5C519.8 92.1 544 107.1 544 130.1L544 409.8C544 423.1 535.7 435.1 523.2 439.8L488.5 452.8C442.3 470.1 390.9 467.4 346.8 445.4C308.9 426.4 265.4 421.7 224.3 432L160 448L160 544C160 561.7 145.7 576 128 576C110.3 576 96 561.7 96 544L96 96C96 78.3 110.3 64 128 64zM160 251.1L224 237.2L224 302.7L160 316.6L160 382.1L208.8 369.9C213.9 368.6 218.9 367.5 224 366.6L224 302.7L262.9 294.3C271.2 292.5 279.6 291.8 288 292.2L288 228.2C301.6 228.6 315.2 230.8 328.4 234.6L352 241.5L352 308.2L310.3 295.9C303 293.8 295.5 292.5 288 292.1L288 363.5C309.8 365.4 331.3 370.2 352 377.9L352 308.1L374.7 314.8C388.2 318.8 402 321.2 416 322.2L416 258C408.2 257.2 400.4 255.7 392.8 253.5L352 241.5L352 179.5C339 175.7 326.2 170.7 313.8 164.5C305.6 160.4 296.9 157.5 288 155.7L288 228.1C275 227.7 262 228.9 249.3 231.7L224 237.2L224 162L160 178L160 251.1zM416 399.7C432.8 401.2 449.9 399 466 392.9L480 387.7L480 316L472.1 317.8C453.7 322.1 434.8 323.5 416 322.3L416 399.7zM480 250.3L480 179.5C459.1 185.6 437.6 188.6 416 188.6L416 258C429.9 259.4 444 258.5 457.7 255.4L480 250.2z" />
+                            </svg>
+                        </div>
+                        <span class="cmd-text">Fim</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="bottom">
+            <div class="left">
+
+            </div>
+            <div class="center">
+                <div class="container-comandos fbox center-vh wrap-comandos">
+                    <div class="comandos bloco-programa fbox center-vh" data-command="mover">
+                        <div class="wrap-svg">
+                            <!-- <svg class="cmd-icon icons" width="64" height="64" viewBox="0 0 64 64" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                    <path
+                                        d="M37.2078 26.7945H18.262M37.2078 26.7945L37.2068 45.7413M37.2078 26.7945L3.10352 60.8988"
+                                        stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+                                    <circle cx="53" cy="11" r="10" />
+                                </g>
+                                <defs>
+                                    <clipPath>
+                                        <rect width="64" height="64" />
+                                    </clipPath>
+                                </defs>
+                            </svg> -->
+                            <img src="images/linear.svg" class="cmd-icon icons" alt="">
+                        </div>
+                        <span class="cmd-text">Mover</span>
+                    </div>
+                    <div class="comandos bloco-programa fbox center-vh" data-command="garra" data-params='{"acao":0}'>
+                        <div class="wrap-svg">
+                            <!-- <svg class="icons" width="64" height="64" viewBox="0 0 64 64" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                    <rect x="17" width="30" height="30" />
+                                    <path d="M14 30H22V36H14V30Z" />
+                                    <path d="M42 30H50V36H42V30Z" />
+                                    <rect x="8" y="64" width="34" height="6" transform="rotate(-90 8 64)" />
+                                    <rect x="50" y="64" width="34" height="6" transform="rotate(-90 50 64)" />
+                                </g>
+                                <defs>
+                                    <clipPath>
+                                        <rect width="64" height="64" />
+                                    </clipPath>
+                                </defs>
+                            </svg> -->
+                            <img src="images/garra_aberta.svg" class="cmd-icon icons" alt="">
+                        </div>
+                        <span class="cmd-text">Garra</span>
+                    </div>
+                    <div class="comandos bloco-programa fbox center-vh" data-command="delay">
+                        <div class="wrap-svg">
+                            <svg class="cmd-icon icon-font-awesome" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                <path
+                                    d="M160 64C142.3 64 128 78.3 128 96C128 113.7 142.3 128 160 128L160 139C160 181.4 176.9 222.1 206.9 252.1L274.8 320L206.9 387.9C176.9 417.9 160 458.6 160 501L160 512C142.3 512 128 526.3 128 544C128 561.7 142.3 576 160 576L480 576C497.7 576 512 561.7 512 544C512 526.3 497.7 512 480 512L480 501C480 458.6 463.1 417.9 433.1 387.9L365.2 320L433.1 252.1C463.1 222.1 480 181.4 480 139L480 128C497.7 128 512 113.7 512 96C512 78.3 497.7 64 480 64L160 64zM416 501L416 512L224 512L224 501C224 475.5 234.1 451.1 252.1 433.1L320 365.2L387.9 433.1C405.9 451.1 416 475.5 416 501z" />
+                            </svg>
+                        </div>
+                        <span class="cmd-text">Delay</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right fbox center-vh">
+                <div id="play-mode" class="fbox center-vh">
+                    <img src="images/loop.png" alt="">
+                    <!-- <i class="fa-solid fa-rotate-right"></i> -->
+                    <!-- <svg id="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.<path d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z"/></svg> -->
+                </div>
+                Play Mode
+            </div>
+        </div>
+
+        <div class="log"></div>
+
+
+        <!-- bla -->
+    </main>
+
+    <div id="operar-robo" class="fbox oculto" data-joint="1"> <!-- .oculto -->
+        <div id="operar-robo-header" class="container-header fbox center-v">
+            Painel de Controle do Robô
+
+            <svg id="close-operar-robo" class="close" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <path
+                    d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z" />
+            </svg>
+        </div>
+
+        <div class="grid-container">
+            <div class="tabs fbox center-v">
+                <div class="tab fbox center-vh">
+                    <div id="previous-joint" class="cursor-pointer arrow fbox center-v">
+                        <svg class="icons" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                            <path
+                                d="M201.4 297.4C188.9 309.9 188.9 330.2 201.4 342.7L361.4 502.7C373.9 515.2 394.2 515.2 406.7 502.7C419.2 490.2 419.2 469.9 406.7 457.4L269.3 320L406.6 182.6C419.1 170.1 419.1 149.8 406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3L201.3 297.3z" />
+                        </svg>
+                    </div>
+                </div>
+                <span id="junta-atual">J1</span>
+                <div class="tab fbox center-vh">
+                    <div id="next-joint" class="cursor-pointer arrow fbox center-v">
+                        <svg class="icons" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                            <path
+                                d="M439.1 297.4C451.6 309.9 451.6 330.2 439.1 342.7L279.1 502.7C266.6 515.2 246.3 515.2 233.8 502.7C221.3 490.2 221.3 469.9 233.8 457.4L371.2 320L233.9 182.6C221.4 170.1 221.4 149.8 233.9 137.3C246.4 124.8 266.7 124.8 279.2 137.3L439.2 297.3z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acoes-uteis fbox">
+                <button type="button" id="home" class="basic-button">Home</button>
+                <button type="button" id="posicoes" class="basic-button">Posições</button>
+            </div>
+        </div>
+
+        <div class="tab-content fbox">
+            <div class="fbox center-vh" style="gap: 20px">
+                <div id="decrease" class="comandos-joint cursor-pointer fbox center-vh">
+                    <svg class="icon-font-awesome" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <path
+                            d="M96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z" />
+                    </svg>
+                </div>
+                <div class="joint-feedback fbox center-vh">
+                    <span id="joint-feedback">90°</span>
+                </div>
+                <div id="increase" class="comandos-joint cursor-pointer fbox center-vh">
+                    <svg class="icon-font-awesome" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <path
+                            d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z" />
+                    </svg>
+
+                </div>
+            </div>
+
+            <div class="fbox center-h" style="gap: 40px">
+                <div id="abrir-garra" class="cursor-pointer comandos-joint">
+                    <svg class="icons" width="64" height="64" viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <rect x="17" width="30" height="30" />
+                            <path d="M14 30H22V36H14V30Z" />
+                            <path d="M42 30H50V36H42V30Z" />
+                            <rect x="8" y="64" width="34" height="6" transform="rotate(-90 8 64)" />
+                            <rect x="50" y="64" width="34" height="6" transform="rotate(-90 50 64)" />
+                        </g>
+                        <defs>
+                            <clipPath>
+                                <rect width="64" height="64" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <div id="fechar-garra" class="cursor-pointer comandos-joint">
+                    <svg class="icons" width="64" height="64" viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <rect x="17.1357" width="30" height="30" />
+                            <path d="M22.349 29.2426L5.2426 46.349L0.999959 42.1064L18.1064 25L22.349 29.2426Z" />
+                            <path d="M42.1357 29.2426L59.2421 46.349L63.4848 42.1064L46.3784 25L42.1357 29.2426Z" />
+                            <path d="M9.37842 42L27.1365 59.7581L22.8938 64.0007L5.13578 46.2426L9.37842 42Z" />
+                            <path d="M55.1063 42L37.3509 59.7555L41.5935 63.9981L59.349 46.2426L55.1063 42Z" />
+                        </g>
+                        <defs>
+                            <clipPath>
+                                <rect width="64" height="64" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="fbox center-h"><button id="teach" class="basic-button" type="button">Teach</button></div>
+        </div>
+    </div>
+
+    <div id="container-posicoes" class="oculto">
+        <div class="container-header fbox center-v">
+            Lista de posições
+
+            <svg id="close-container-posicoes" class="close" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <path
+                    d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z" />
+            </svg>
+        </div>
+
+        <div class="content">
+            <table id="tabela-posicoes" class="tabela-vazia">
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th class="joint">J1</th>
+                        <th class="joint">J2</th>
+                        <th class="joint">J3</th>
+                        <th class="joint">J4</th>
+                        <th class="joint">J5</th>
+                        <th style="text-align: center;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="7">Sem posições adicionadas</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="container-slot-saves" class="">
+        <header class="fbox center-v">
+            <ul class="nav fbox center-v ">
+                <li class="cursor-pointer fbox center-vh" id="close-slot-saves" style="display: none">
+                    Retornar
+                </li>
+                <!-- <li>
+                    <div class="item-nav-text fbox center-vh"></div>
+                </li>
+                <li>
+                    <div class="item-nav-text fbox center-vh"></div>
+                </li> -->
+            </ul>
+
+            <!-- Select de portas abaixo do ul.nav -->
+            <!-- <div class="serial-select-container cursor-pointer">
+                <div class="serial-select-selected cursor-pointer">Clique para selecionar porta...</div>
+                <div class="serial-select-options oculto">
+                    <div>porta 1</div>
+                    <div>porta 2</div>
+                </div>
+            </div> -->
+        </header>
+        <div class="content">
+            <div class="container-slots">
+                <h1>Programas Salvos</h1>
+
+                <div class="container" id="slots">
+                    
+                </div>
+
+                <button class="btn-add" onclick="openNameModal(null)">+ Criar Programa</button>
+
+                <!-- Modal de nome -->
+                <div class="modal-bg" id="modalNameBg">
+                    <div class="modal">
+                        <h2 id="modalNameTitle">Novo Programa</h2>
+ 
+                        <input type="text" id="programNameInput" placeholder="Digite o nome">
+
+                        <div class="modal-buttons">
+                            <button class="btn-cancel" onclick="closeNameModal()">Cancelar</button>
+                            <button class="btn-confirm" onclick="confirmName()">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de confirmação -->
+                <div class="modal-bg" id="modalConfirmBg">
+                    <div class="modal">
+                        <h2 id="confirmText">Tem certeza que deseja excluir este programa?</h2>
+ 
+                        <div class="modal-buttons">
+                            <button class="btn-cancel" onclick="closeConfirmModal()">Cancelar</button>
+                            <button class="btn-confirm" id="confirmBtn">Sim</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+        // === 1. Imports ===
+        // === 2. Constantes globais ===
+        // === 3. Seletores de elementos DOM ===
+        // === 4. Funções utilitárias ===
+        // === 5. Funções específicas (serial, teach, movimento etc.) ===
+        // === 6. Inicialização e eventos ===
+        // === 7. pywebview startup ===
+
+    -->
+    <script type="module">
+        import { makeDraggable } from './js/dragModule.js';
+        import { initBlockDrag } from './js/blockDrag.js';
+
+        // ========== 1. CONFIGURAÇÃO DE DRAG ==========
+        makeDraggable(document.querySelector('#operar-robo'), {
+            handleSelector: "#operar-robo-header",
+            limitTop: 0, limitLeft: 0, limitRight: 0, limitBottom: 0, safe: 40,
+        });
+
+        makeDraggable(document.querySelector('.container-programa'), {
+            limitTop: -30, limitLeft: -Infinity, limitRight: Infinity, limitBottom: -30, safe: 100,
+        });
+
+        makeDraggable(document.querySelector("#container-posicoes"), {
+            handleSelector: ".container-header",
+            limitTop: 0, limitLeft: 0, limitRight: -100, limitBottom: -100, safe: 40,
+        });
+
+        initBlockDrag();
+    </script>
+    <script type="module" src="js/programas.js"></script>
+
+    <script>
+        /* ==========================================================
+           2. VARIÁVEIS GLOBAIS E ELEMENTOS DOM
+        ========================================================== */
+        
+        const serialSelectContainer = document.querySelector(".serial-select-container");
+        const serialSelectSelected = serialSelectContainer.querySelector(".serial-select-selected");
+        const serialSelectOptions = serialSelectContainer.querySelector(".serial-select-options");
+        const statusConexao = document.querySelector('#status-conexao');
+
+        const operarRobo = document.querySelector('#operar-robo');
+        const btnJanelaOperarRobo = document.querySelector('.wrap-operar-robo');
+        const closeJanelaOperarRobo = document.querySelector('#close-operar-robo');
+        const nextJoint = document.querySelector('#next-joint');
+        const previousJoint = document.querySelector('#previous-joint');
+
+        const home = document.querySelector('#home');
+        const posicoes = document.querySelector('#posicoes');
+        const increase = document.getElementById('increase');
+        const decrease = document.getElementById('decrease');
+        const abrirGarra = document.getElementById('abrir-garra');
+        const fecharGarra = document.getElementById('fechar-garra');
+        const teach = document.getElementById('teach');
+
+        const containerPosicoes = document.getElementById('container-posicoes');
+        const closeContainerPosicoes = containerPosicoes.querySelector('.close');
+        const tabelaPosicoes = document.querySelector('#tabela-posicoes');
+        const tbody = tabelaPosicoes.querySelector('tbody');
+
+        const sliderSpeed = document.getElementById('slider-speed');
+        const sliderSpeedSpan = document.getElementById('slider-speed-span');
+
+        const play = document.getElementById('cmd-play');
+        const pause = document.getElementById('cmd-pause');
+        const backward = document.getElementById('cmd-backward');
+        const forward = document.getElementById('cmd-forward');
+
+        const container_slot_save = document.getElementById('container-slot-saves');
+        const open_slot_save = document.getElementById('open-slot-saves');
+        const close_slot_save = document.getElementById('close-slot-saves');
+        const salvarPrograma = document.getElementById('salvar-programa');
+        const nomePrograma = document.getElementById('nome-programa');
+        
+
+        let needUpdateSequence = true;
+        let intervalId = null;
+        let globalSpeed = 50;
+        let playMode = false;
+        var baudrate = 500000;
+
+        let currentProgram = null;
+
+        let points = [];
+        let jointPos = [90, 30, 152, 90, 84];
+
+        /* ==========================================================
+           3. FUNÇÕES UTILITÁRIAS
+        ========================================================== */
+        function toggleVisibility(container, trigger) {
+            trigger.addEventListener('click', () => {
+                container.classList.toggle('oculto');
+            });
+        }
+
+        async function enviar(msg) {
+            return await pywebview.api.enviar(msg);
+        }
+
+        function wait(ms) {
+            return new Promise(r => setTimeout(r, ms));
+        }
+
+        /* ==========================================================
+           4. FUNÇÕES DE CONEXÃO SERIAL
+        ========================================================== */
+        async function carregarPortas(portas = null) {
+            try {
+                let dispositivos = portas || (await pywebview.api.listar_portas()).dados;
+                serialSelectOptions.innerHTML = "";
+
+                if (dispositivos.length === 0) {
+                    serialSelectOptions.innerHTML = "<div>Nenhum dispositivo encontrado.</div>";
+                    return;
+                }
+
+                dispositivos.forEach(d => {
+                    const item = document.createElement("div");
+                    item.textContent = `(${d.porta}) ${d.descricao}`;
+                    item.dataset.porta = d.porta;
+                    item.onclick = () => selecionarPorta(item.dataset.porta, item.textContent, baudrate);
+                    serialSelectOptions.appendChild(item);
+                });
+            } catch (err) {
+                serialSelectOptions.innerHTML = "<div>Erro ao carregar portas.</div>";
+                console.error(err);
+            }
+        }
+
+        async function selecionarPorta(porta, descricao, baudrate) {
+            serialSelectSelected.textContent = descricao;
+            serialSelectOptions.classList.add('oculto');
+            serialSelectSelected.dataset.porta = porta;
+
+            try {
+                await pywebview.api.conectar(porta, baudrate, timeout = 0);
+                await testarConexao();
+                await setPoints();
+                serialSelectSelected.classList.add('connected');
+                needUpdateSequence = true;
+            } catch (err) {
+                console.error("Erro ao conectar:", err);
+            }
+        }
+
+        async function testarConexao() {
+            try {
+                let teste = await pywebview.api.testar_comunicacao();
+                const conectado = teste.sucesso === true;
+                serialSelectSelected.classList.toggle('connected', conectado);
+                statusConexao.textContent = conectado ? 'conectado' : 'desconectado';
+                return teste;
+            } catch (err) {
+                console.error("Erro:", err);
+            }
+        }
+
+        /* ==========================================================
+           5. FUNÇÕES DE OPERAÇÃO DO ROBÔ
+        ========================================================== */
+        function changeJoint() {
+            const juntaAtual = document.querySelector('#junta-atual');
+            const jointFeedback = document.querySelector('#joint-feedback');
+            const joint = operarRobo.getAttribute('data-joint');
+
+            juntaAtual.textContent = 'J' + joint;
+            jointFeedback.textContent = jointPos[joint - 1] + "°";
+        }
+
+        async function setJointPos(j, pos) {
+            const juntaAtual = document.querySelector('#junta-atual');
+            const jointFeedback = document.querySelector('#joint-feedback');
+            if (juntaAtual.textContent.split("")[1] == j + 1) {
+                jointFeedback.textContent = pos + "°";
+            }
+            jointPos[j] = parseInt(pos)
+        }
+
+        function startContinuous(step) {
+            let joint = operarRobo.getAttribute('data-joint');
+            let cmd = `J${joint}:S:${step}`;
+            enviar(cmd);
+
+            intervalId = setTimeout(() => {
+                intervalId = setInterval(() => enviar(cmd), 30);
+            }, 200);
+        }
+
+        function stopContinuous() {
+            clearTimeout(intervalId);
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+        async function setPoints() {
+            points = await pywebview.api.get_points();
+
+            const selectPosition = document.querySelector("select[name=point]");
+            const btnSave = document.querySelector('.cmd-actions .btn-save');
+
+            const existSelect = true ? selectPosition != null : false;
+
+            tbody.innerHTML = '';
+
+            if (points.length === 0) {
+                tabelaPosicoes.classList.add('tabela-vazia');
+                tbody.innerHTML = `<tr><td colspan="7">Sem posições adicionadas</td></tr>`;
+                if (existSelect) {
+                    selectPosition.innerHTML = '<option value="none">Sem posições</option>';
+                    selectPosition.disabled = true;
+                    btnSave.disabled = true;
+                }
+
+                return;
+            }
+
+            tabelaPosicoes.classList.remove('tabela-vazia');
+            if (existSelect) {
+                selectPosition.innerHTML = '';
+                selectPosition.disabled = false;
+                btnSave.disabled = false;
+                btnSave.classList.remove('btn-disabled');
+            }
+
+            points.forEach((pos, i) => {
+                
+                if (existSelect) {
+                    console.log(pos, i);
+                    const opt = document.createElement('option');
+                    opt.value = i + 1;
+                    opt.textContent = i + 1;
+                    selectPosition.appendChild(opt);
+                }
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                <td class="emphasis">${i + 1}</td>
+                ${pos.map(p => `<td>${p}°</td>`).join('')}
+                <td class="fbox center-vh">
+                    <button class="basic-button mover">Mover</button>
+                    <button class="basic-button deletar">Deletar</button>
+                </td>
+            `;
+                tr.querySelector('.mover').onclick = () => enviar(`M:M:${parseInt(globalSpeed / 10)}:#${points[i].join(";")}#`);
+                tr.querySelector('.deletar').onclick = () => { pywebview.api.delete_point(i); };
+                tbody.appendChild(tr);
+            });
+        }
+
+        function setStep(string) {
+            const comandos = document.querySelectorAll('.cmd-sequence');
+            const cmdStep = document.querySelector(".pointer");
+            const stepAtual = JSON.parse(string).step;
+
+            // let remove = false;
+            if (cmdStep) cmdStep.classList.remove('pointer');
+            if (stepAtual == 'end') {
+                document.querySelector("#fim-programa > .comandos").classList.add('pointer');
+            } else if (stepAtual == 'init') {
+                document.querySelector("#inicio-programa > .comandos").classList.add('pointer');
+            } else {
+                comandos.forEach(async (c, i) => {
+                    if (c.dataset.params && i + 1 == stepAtual) {
+                        c.classList.add('pointer');
+
+                        // const params = JSON.parse(c.dataset.params || "{}");
+                        // if (params.position != null)
+                        //     string = `M:${params.mode == "Linear" ? "M" : "MS"}:${parseInt(params.speed / 10)}:#${sequence[params.position - 1]}#`;
+                        // else if (params.acao != null)
+                        //     string = `G:${params.acao}`;
+                        // if (string) {
+                        //     console.log(string);
+                        //     await enviar(string);
+                        //     await wait(50);
+                        // }
+                    }
+                })
+            }
+        }
+
+        async function gerarSequencia() {
+            const comandos = document.querySelectorAll('.cmd-sequence');
+            await enviar("S:C:C");
+
+            for (const cmd of comandos) {
+                const params = JSON.parse(cmd.dataset.params || "{}");
+                let string = "";
+
+                if (params.point != null)
+                    string = `S:${params.mode == "Linear" ? "M" : "MS"}:${parseInt(params.speed / 10)}:#${points[params.point].join(';')}#`;
+                else if (params.delay != null)
+                    string = `S:W:${params.delay * 1000}`;
+                else if (params.acao != null)
+                    string = `S:G:${params.acao}`;
+
+                if (string) {
+                    await enviar(string);
+                    await wait(50);
+                }
+            }
+            needUpdateSequence = false;
+        }
+
+        function setProgram(prg) {
+            currentProgram = prg
+            nomePrograma.textContent = currentProgram.name
+        }
+
+        function limparPrograma() {
+            const comandos = document.querySelectorAll('.wrap-comando:not(.not-include)');
+            comandos.forEach(e => {e.remove()})
+        }
+
+        /* ==========================================================
+           6. EVENTOS E INTERAÇÕES
+        ========================================================== */
+        // Fechamento de containers
+        toggleVisibility(operarRobo, btnJanelaOperarRobo);
+        toggleVisibility(operarRobo, closeJanelaOperarRobo);
+
+        toggleVisibility(containerPosicoes, posicoes);
+        toggleVisibility(containerPosicoes, closeContainerPosicoes);
+
+        toggleVisibility(container_slot_save, open_slot_save)
+        toggleVisibility(container_slot_save, close_slot_save)
+
+        // Serial select
+        serialSelectSelected.addEventListener("click", () => {
+            serialSelectOptions.classList.remove('oculto');
+            carregarPortas();
+        });
+
+        document.addEventListener("click", e => {
+            if (!e.composedPath().includes(serialSelectContainer))
+                serialSelectOptions.classList.add("oculto");
+        });
+
+        // Juntas
+        nextJoint.addEventListener('click', () => {
+            let joint = parseInt(operarRobo.getAttribute('data-joint'));
+            operarRobo.setAttribute('data-joint', joint < 5 ? joint + 1 : 1);
+            changeJoint();
+        });
+
+        previousJoint.addEventListener('click', () => {
+            let joint = parseInt(operarRobo.getAttribute('data-joint'));
+            operarRobo.setAttribute('data-joint', joint > 1 ? joint - 1 : 5);
+            changeJoint();
+        });
+
+        // Movimento contínuo
+        increase.addEventListener('mousedown', () => startContinuous(1));
+        decrease.addEventListener('mousedown', () => startContinuous(-1));
+        ['mouseup', 'mouseleave'].forEach(ev => {
+            increase.addEventListener(ev, stopContinuous);
+            decrease.addEventListener(ev, stopContinuous);
+        });
+
+        // Garra
+        abrirGarra.addEventListener('click', () => enviar('G:0'));
+        fecharGarra.addEventListener('click', () => enviar('G:1'));
+
+        // Teach
+        teach.addEventListener('click', async () => { pywebview.api.add_point(); });
+
+        // Homing
+        home.addEventListener('click', () => {
+            enviar('M:H');
+        })
+
+        // Slider velocidade
+        sliderSpeed.addEventListener('input', () => {
+            globalSpeed = sliderSpeed.value;
+            sliderSpeedSpan.textContent = `${globalSpeed}%`;
+        });
+
+        // Sequência
+        play.addEventListener('click', async () => {
+            if (needUpdateSequence) {
+                await gerarSequencia()
+            }
+            await enviar(`S:C:L:${playMode ? "1" : "0"}`);
+            await enviar("S:C:R");
+        });
+        pause.addEventListener('click', async () => {
+            await enviar("S:C:P");
+        })
+        backward.addEventListener('click', async () => {
+            await enviar("S:C:B");
+        })
+        forward.addEventListener('click', async () => {
+            if (needUpdateSequence) {
+                await gerarSequencia()
+            }
+            await enviar("S:C:F")
+        })
+
+        // Modo de operação
+        document.getElementById("play-mode").addEventListener("click", async () => {
+            const modoOperacao = document.getElementById("modo-operacao");
+            playMode = !playMode;
+            document.documentElement.style.setProperty("--edit-mode-color", playMode ? "#fd6161" : "");
+            modoOperacao.textContent = playMode ? "Modo de reprodução" : "Modo de edição";
+        });
+
+        // Salvar programa
+        salvarPrograma.addEventListener('click', () => {
+            const data = generateObjectCommand()
+            console.log(data);
+            
+            pywebview.api.save_program(currentProgram.name, JSON.stringify(data), currentProgram.id)
+        })
+
+        /* ==========================================================
+           7. PYWEBVIEW READY
+        ========================================================== */
+        window.addEventListener('pywebviewready', async () => {
+            pywebview.api.start_monitor();
+            updateSlots();
+            setPoints();
+        });
+    </script>
+
+
+
+</body>
+
+</html>
