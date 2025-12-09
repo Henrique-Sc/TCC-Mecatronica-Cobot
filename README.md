@@ -1,6 +1,8 @@
 # TCC-Mecatronica-Cobot
 Aqui neste repositório, contém o software desktop e o firmware para ESP32, desenvolvido para controle do Cobot, o braço robótico colaborativo. Projeto de TCC do curso Técnico em Mecatrônica, para a ETEC Martin Luther King
 
+<img src="docs/IMG_20251128_203216.jpg" width="500px">
+
 ### Integrantes do Projeto:
 - Breno Lanzoni de Matos
 - Henrique da Silva Costa
@@ -13,6 +15,7 @@ Aqui neste repositório, contém o software desktop e o firmware para ESP32, des
 
 **CobotController**: Software para controle do robô
 
+<img src="docs/program-example.png" width="500px">
 
 ### Demonstração
 
